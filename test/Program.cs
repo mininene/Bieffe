@@ -68,7 +68,7 @@ namespace test
             uint result= con.GetData(handle, "0828K10522.LOG", "C:\\Users\\fuenteI3\\Desktop\\hola.txt");
 
             Console.WriteLine("Resultado de get"+ result);
-
+            //hola
             con.CloseConnection(ref handle);
 
            
