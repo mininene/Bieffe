@@ -70,6 +70,7 @@ namespace test
             Console.WriteLine("Resultado de get"+ result);
 
             con.CloseConnection(ref handle);
+
            
 
           Console.ReadKey();
