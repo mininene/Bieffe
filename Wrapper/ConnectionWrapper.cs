@@ -1,17 +1,29 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Wrapper
 {
     public class ConnectionWrapper
+
+
     {
+
         [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
         static extern float th4_version();
-        public float get_version() 
-        { 
+        public float get_version()
+        {
             return th4_version();
         }
 
+
+        [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern uint th4_lasterror();
+        public uint GetError()
+        {
+            return th4_lasterror();
+
+        }
 
 
         [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -48,8 +60,14 @@ namespace Wrapper
         }
 
 
+        [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern IntPtr th4_message(uint error, [MarshalAs(UnmanagedType.LPWStr)]  StringBuilder buffer);
+        public IntPtr GetMessage(uint error, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder buffer)
+        {
+            return th4_message(error, buffer);
+            
 
-
+        }
 
     }
 }
