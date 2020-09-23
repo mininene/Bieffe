@@ -1,0 +1,55 @@
+﻿using System;
+using System.Runtime.InteropServices;
+
+namespace Wrapper
+{
+    public class ConnectionWrapper
+    {
+        [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern float th4_version();
+        public float get_version() 
+        { 
+            return th4_version();
+        }
+
+
+
+        [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern uint th4_initSession(int version, [MarshalAs(UnmanagedType.LPStr)] string ipaddress);
+        public uint ConnectSession(int version, string ipaddress)
+        {
+            return th4_initSession(version, ipaddress);
+        }
+
+
+        [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern uint th4_connect(uint handle);
+        public uint ConnectApi(uint handle)
+        {
+            return th4_connect(handle);
+        }
+
+
+
+        [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern uint th4_readFile(uint handle, [MarshalAs(UnmanagedType.LPStr)] string remoteFile, [MarshalAs(UnmanagedType.LPStr)] string localFile);
+        public uint GetData(uint handle, string remoteFile, string localFile)
+        {
+            return th4_readFile(handle, remoteFile, localFile);
+        }
+
+
+
+        [DllImport("th4log.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern uint th4_close(ref uint lhandle);
+        public uint CloseConnection(ref uint lhandle)
+        {
+            return th4_close(ref lhandle);
+        }
+
+
+
+
+
+    }
+}
