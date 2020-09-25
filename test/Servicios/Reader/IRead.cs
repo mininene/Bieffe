@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using test.Modelo;
 
-namespace test.Servicios.Factory
+namespace test.Servicios.Reader
 {
     public interface IRead
     {

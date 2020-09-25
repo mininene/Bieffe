@@ -8,5 +8,7 @@ namespace test.Modelo
 {
     public class TablaResumen
     {
+        public string Programa { get; set; }
+        public string Programador { get; set; }
     }
 }
