@@ -3,15 +3,20 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using test.DAL;
 using test.Modelo;
+using test.Modelo.BaseDatos;
 using test.Servicios.Reader;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -75,6 +80,20 @@ namespace test
             //    //Console.WriteLine("Mensaje de error: " + message.ToString());
 
             //}
+            //using (var context = new ResumenEntities())
+
+            //{
+            //      var stdQuery = (from d in context.Columnas
+
+            //                    select new { Id = d.Id, Name = d.Columna1 });
+
+            //    foreach (var q in stdQuery)
+
+            //    {
+
+            //        Console.WriteLine("ID : " + q.Id + ", Name : " + q.Name);
+
+            //    }
 
 
 
@@ -82,11 +101,32 @@ namespace test
             IRead lectura = new Read();
             lectura.readFile();
 
+            Console.WriteLine("Escribiendo en la base de datos");
+
+
+
 
             Console.ReadKey();
+
         }
-    }
-}
+
+
+
+
+
+
+           
+                }
+
+
+
+
+            }
+
+        
+    
+
+
             
 
         
