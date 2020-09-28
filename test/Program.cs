@@ -18,6 +18,7 @@ using test.DAL;
 using test.Modelo;
 using test.Modelo.BaseDatos;
 using test.Servicios.Reader;
+using test.Servicios.WriterDb;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -98,8 +99,10 @@ namespace test
 
 
 
-            IRead lectura = new Read();
-            lectura.readFile();
+            //IRead lectura = new Read();
+            //lectura.readFile();
+            IWriterDb writer = new WriterDb();
+            writer.WriteFile();
 
             Console.WriteLine("Escribiendo en la base de datos");
 

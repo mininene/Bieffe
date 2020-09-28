@@ -38,12 +38,12 @@ namespace test.Servicios.Reader
                                                        //{
                     Row row = new Row
                     {
-                        Column1 = lines[0].Trim(),
-                        Column2 = lines[1].Trim(),
-                        Programa = lines[2].Replace(" ", String.Empty).Substring(8,2),
-                        Column4 = lines[3].Substring(1, 49).Trim(),
-                        Column5 = lines[4].Trim(),
-                        Column6 = lines[5].Substring(1, 49).Trim()
+                        //Column1 = lines[0].Trim(),
+                        //Column2 = lines[1].Trim(),
+                        //Programa = lines[2].Replace(" ", String.Empty).Substring(8,2),
+                        //Column4 = lines[3].Substring(1, 49).Trim(),
+                        //Column5 = lines[4].Trim(),
+                        //Column6 = lines[5].Substring(1, 49).Trim()
 
                     };
                     lista.Add(row);
@@ -56,12 +56,12 @@ namespace test.Servicios.Reader
                     {
 
 
-                        prueba.Columna1 = x.Column1;
-                        prueba.Columna2 = x.Column2;
-                        prueba.Columna3 = x.Programa;
-                        prueba.Columna4 = x.Column4;
-                        prueba.Columna5 = x.Column5;
-                        prueba.Columna6 = x.Column6;
+                        //prueba.Columna1 = x.Column1;
+                        //prueba.Columna2 = x.Column2;
+                        //prueba.Columna3 = x.Programa;
+                        //prueba.Columna4 = x.Column4;
+                        //prueba.Columna5 = x.Column5;
+                        //prueba.Columna6 = x.Column6;
 
 
                     }

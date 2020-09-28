@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace test.Modelo
+namespace test.Servicios.WriterDb
 {
-    class DatosXml
+    public interface IWriterDb
     {
-
-
-
-
-
+        void WriteFile();
     }
 }

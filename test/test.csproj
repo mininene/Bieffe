@@ -208,14 +208,32 @@
     <Compile Include="Modelo\BaseDatos\sysdiagrams.cs">
       <DependentUpon>Resumen.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\ConnectionData.cs" />
-    <Compile Include="Modelo\DatosXml.cs" />
+    <Compile Include="Modelo\Datos\Ciclos.cs">
+      <DependentUpon>HojaResumen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Datos\HojaResumen.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HojaResumen.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Datos\HojaResumen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HojaResumen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Datos\HojaResumen.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HojaResumen.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\Row.cs" />
     <Compile Include="Modelo\TablaResumen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\Reader\IRead.cs" />
     <Compile Include="Servicios\Reader\Read.cs" />
+    <Compile Include="Servicios\WriterDb\IWriterDb.cs" />
+    <Compile Include="Servicios\WriterDb\WriterDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -225,6 +243,13 @@
     </EntityDeploy>
     <None Include="Modelo\BaseDatos\Resumen.edmx.diagram">
       <DependentUpon>Resumen.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Modelo\Datos\HojaResumen.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HojaResumen.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Modelo\Datos\HojaResumen.edmx.diagram">
+      <DependentUpon>HojaResumen.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -254,6 +279,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Resumen.edmx</DependentUpon>
       <LastGenOutput>Resumen1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modelo\Datos\HojaResumen.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HojaResumen.edmx</DependentUpon>
+      <LastGenOutput>HojaResumen.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modelo\Datos\HojaResumen.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HojaResumen.edmx</DependentUpon>
+      <LastGenOutput>HojaResumen.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
