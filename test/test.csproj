@@ -208,6 +208,7 @@
     <Compile Include="Modelo\BaseDatos\sysdiagrams.cs">
       <DependentUpon>Resumen.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\ConnectionData.cs" />
     <Compile Include="Modelo\Datos\Ciclos.cs">
       <DependentUpon>HojaResumen.tt</DependentUpon>
     </Compile>
@@ -232,6 +233,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\Reader\IRead.cs" />
     <Compile Include="Servicios\Reader\Read.cs" />
+    <Compile Include="Servicios\WriterBd\IWriterBd.cs" />
+    <Compile Include="Servicios\WriterBd\Writer.cs" />
     <Compile Include="Servicios\WriterDb\IWriterDb.cs" />
     <Compile Include="Servicios\WriterDb\WriterDb.cs" />
   </ItemGroup>

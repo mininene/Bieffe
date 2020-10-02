@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Internal;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.IO;
@@ -23,12 +24,15 @@ namespace test.Servicios.WriterDb
                     string path = @"C:\Users\fuenteI3\Desktop\ReportesGenerados\AutoClaveK.txt";
 
                     string[] lines = File.ReadAllLines(path, new UnicodeEncoding());
+                    //var t = lines.SkipWhile(s => s.Contains("Header"));
+                   
 
                     List<Row> lista = new List<Row>(); //declaro la lista que quiero cargar
                     var longitud = lines.Length;
                     Row row = new Row
                     {
                         IdAutoclave = lines[10].Replace(" ", String.Empty).Substring(10),
+                 
                         IdSeccion = "Sabi2",//directo
                         NumeroCiclo = lines[25].Replace(" ", String.Empty).Substring(12),
                         Programa = lines[2].Replace(" ", String.Empty).Substring(8),
@@ -66,11 +70,47 @@ namespace test.Servicios.WriterDb
                         TFF6 = lines[880].Substring(4),
                         TFSubF6 = lines[881].Substring(14),
 
+                        Fase7 = lines[886].Substring(12),
+                        DuracionTotalF7 = lines[898].Replace(" ", String.Empty).Substring(21),
+                        TIF7 = lines[888].Substring(4),
+                        TISubF7 = lines[889].Substring(14),
 
+                        Fase8 = lines[902].Substring(12),
+                        DuracionTotalF8 = lines[942].Replace(" ", String.Empty).Substring(21),
+                        TIF8 = lines[904].Substring(4),
+                        TISubF8 = lines[905].Substring(14),
+                        TFF8 = lines[940].Substring(4),
 
+                        Fase9 = lines[1012].Substring(12),
+                        DuracionTotalF9 = lines[1252].Replace(" ", String.Empty).Substring(21),
+                        TIF9 = lines[1014].Substring(4),
+                        TISubF9 = lines[1015].Substring(14),
+                        TFF9 = lines[1250].Substring(4),
 
+                        Fase10 = lines[1256].Substring(12),
+                        DuracionTotalF10 = lines[1260].Replace(" ", String.Empty).Substring(21),
 
+                        Fase11 = lines[1264].Substring(12),
+                        DuracionTotalF11 = lines[1328].Replace(" ", String.Empty).Substring(21),
 
+                        Fase12 = lines[1332].Substring(12),
+                        DuracionTotalF12 = "Desconocida",
+
+                        Fase13 = "No",
+                        TFF13 = "No",
+                        TFSubF13 = "No",
+
+                        HoraInicio = lines[1338].Substring(22),
+                        HoraFin = lines[1339].Substring(22),
+
+                        EsterilizacionN = lines[1340].Substring(26),
+                        TMinima = lines[1341].Replace(" ", String.Empty).Substring(25) ,
+                        TMaxima = lines[1342].Replace(" ", String.Empty).Substring(25) ,
+                        DuracionTotal = lines[1343].Replace(" ", String.Empty).Substring(25),
+                        FtzMin = lines[1344].Replace(" ", String.Empty).Substring(11),
+                        FtzMax = lines[1345].Replace(" ", String.Empty).Substring(11),
+                        AperturaPuerta = lines[1347].Trim(),                
+                        TiempoCiclo = "No",
 
 
                     };
@@ -122,6 +162,49 @@ namespace test.Servicios.WriterDb
                         ciclos.TISubF6 = s.TISubF6;
                         ciclos.TFF6 = s.TFF6;
                         ciclos.TFSubF6 = s.TFSubF6;
+
+                        ciclos.Fase7 = s.Fase7;
+                        ciclos.DuracionTotalF7 = s.DuracionTotalF7;
+                        ciclos.TIF7 = s.TIF7;
+                        ciclos.TISubF7 = s.TISubF7;
+
+                        ciclos.Fase8 = s.Fase8;
+                        ciclos.DuracionTotalF8 = s.DuracionTotalF8;
+                        ciclos.TIF8 = s.TIF8;
+                        ciclos.TISubF8 = s.TISubF8;
+                        ciclos.TFF8 = s.TFF8;
+
+                        ciclos.Fase9 = s.Fase9;
+                        ciclos.DuracionTotalF9 = s.DuracionTotalF9;
+                        ciclos.TIF9 = s.TIF9;
+                        ciclos.TISubF9 = s.TISubF9;
+                        ciclos.TFF9 = s.TFF9;
+
+                        ciclos.Fase10 = s.Fase10;
+                        ciclos.DuracionTotalF10 = s.DuracionTotalF10;
+
+                        ciclos.Fase11 = s.Fase11;
+                        ciclos.DuracionTotalF11 = s.DuracionTotalF11;
+
+                        ciclos.Fase12 = s.Fase12;
+                        ciclos.DuracionTotalF12 = s.DuracionTotalF12;
+
+                        ciclos.Fase13 = s.Fase13;
+                        ciclos.TFF13 = s.TFF13;
+                        ciclos.TFSubF13 = s.TFSubF13;
+
+                        ciclos.HoraInicio = s.HoraInicio;
+                        ciclos.HoraFin = s.HoraFin;
+
+                        ciclos.EsterilizacionN = s.EsterilizacionN;
+                        ciclos.TMinima = s.TMinima;
+                        ciclos.TMaxima = s.TMaxima;
+                        ciclos.DuracionTotal = s.DuracionTotal;
+                        ciclos.FtzMin = s.FtzMin;
+                        ciclos.FtzMax = s.FtzMax;
+                        ciclos.AperturaPuerta = s.AperturaPuerta;
+                        ciclos.TiempoCiclo = s.TiempoCiclo;
+
 
 
 
