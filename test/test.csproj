@@ -231,6 +231,8 @@
     <Compile Include="Modelo\TablaResumen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\Parser\IParser.cs" />
+    <Compile Include="Servicios\Parser\Parser.cs" />
     <Compile Include="Servicios\Reader\IRead.cs" />
     <Compile Include="Servicios\Reader\Read.cs" />
     <Compile Include="Servicios\WriterBd\IWriterBd.cs" />
