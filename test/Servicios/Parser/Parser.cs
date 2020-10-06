@@ -17,7 +17,7 @@ namespace test.Servicios.Parser
             try
             {
 
-                string path = @"C:\Users\fuenteI3\Desktop\ReportesGenerados\AutoClaveK.txt";
+                string path = @"C:\Users\fuenteI3\Desktop\ReportesGenerados\AutoClaveA.txt";
                 string Programa = "PROGRAMA";
                 string Programador = "PROGRAMAD.";
                 string Operador = "OPERADOR";
@@ -122,7 +122,7 @@ namespace test.Servicios.Parser
                         Row row = new Row
                         {
                             IdAutoclave = RegistroEncabezado[5],
-                            IdSeccion = "" + DateTime.Today,
+                            IdSeccion = "Sabi1" + DateTime.Today,
                             NumeroCiclo = RegistroEncabezado[7],
                             Programa = RegistroEncabezado[0],
                             DatosPrograma = RegistroEncabezado[6],  //modelo
@@ -144,43 +144,49 @@ namespace test.Servicios.Parser
                             Fase10 = RegistroCiclos[46],
                             Fase11 = RegistroCiclos[51],
                             Fase12 = RegistroCiclos[56],
-                            Fase13 = RegistroCiclos[61],
+                            Fase13 = RegistroCiclos[61],  //revisar
 
                             TIF5 = RegistroCiclos[23],
                             TIF6 = RegistroCiclos[28],
-                            TIF7 = RegistroCiclos[33],
+                         //   TIF7 = RegistroCiclos[33],
                             TIF8 = RegistroCiclos[38],
                             TIF9 = RegistroCiclos[43],
+                            TFF13 = RegistroCiclos[63],   //revisar
 
-                            TISubF5 = RegistroCiclos[23],
-                            TISubF6 = RegistroCiclos[28],
-                            TISubF7 = RegistroCiclos[33],
-                            TISubF8 = RegistroCiclos[38],
-                            TISubF9 = RegistroCiclos[43],
+                            TISubF5 = RegistroCiclos[24],
+                            TISubF6 = RegistroCiclos[29],
+                          //  TISubF7 = RegistroCiclos[34],
+                            TISubF8 = RegistroCiclos[39],
+                            TISubF9 = RegistroCiclos[44],
+                            TFSubF13 = RegistroCiclos[64],
 
-                            DuracionTotalF1 = RegistroDatosFF[2],
-                            DuracionTotalF2 = RegistroDatosFF[5],
-                            DuracionTotalF3 = RegistroDatosFF[8],
-                            DuracionTotalF4 = RegistroDatosFF[11],
-                            DuracionTotalF5 = RegistroDatosFF[14],
-                            DuracionTotalF6 = RegistroDatosFF[17],
-                            DuracionTotalF7 = RegistroDatosFF[20],
-                            DuracionTotalF8 = RegistroDatosFF[23],
-                            DuracionTotalF9 = RegistroDatosFF[26],
-                            DuracionTotalF10 = RegistroDatosFF[29],
-                            DuracionTotalF11 = RegistroDatosFF[32],
-                            DuracionTotalF12 = RegistroDatosFF[35],
+                            DuracionTotalF1 = RegistroDatosFF[0],
+                            DuracionTotalF2 = RegistroDatosFF[3],
+                            DuracionTotalF3 = RegistroDatosFF[6],
+                            DuracionTotalF4 = RegistroDatosFF[9],
+                            DuracionTotalF5 = RegistroDatosFF[12],
+                            DuracionTotalF6 = RegistroDatosFF[15],
+                            DuracionTotalF7 = RegistroDatosFF[18],
+                            DuracionTotalF8 = RegistroDatosFF[21],
+                            DuracionTotalF9 = RegistroDatosFF[24],
+                            DuracionTotalF10 = RegistroDatosFF[27],
+                            DuracionTotalF11 = RegistroDatosFF[30],
+                            DuracionTotalF12 = RegistroDatosFF[33],
 
 
                             TFF5 = RegistroTF[0],
-                            TFF6 = RegistroTF[1],
-                            TFF8 = RegistroDatosFF[25],
-                            TFF9 = RegistroDatosFF[28],
-                            //TFF13 = RegistroTF[],
+                            TFF6 = RegistroCiclos[33],//Es el inicio de fase 7 TIF7
+                            TIF7 = RegistroTF[2],  // TIF7 realmente es TFF7
+                           // TFF6 = RegistroTF[1],  
+                            TFF8 = RegistroDatosFF[26],
+                            TFF9 = RegistroDatosFF[29],
+
 
                             TFSubF5 = RegistroTFSub[0],
-                            TFSubF6 = RegistroTFSub[1],
-                            TFSubF13 = RegistroDatosFF[6],
+                            TISubF7= RegistroTFSub[2], // TISubF7 es TFSubF7
+                           // TFSubF6 = RegistroTFSub[1], 
+                           TFSubF6= RegistroCiclos[34],  //Inicio Sbzero de la Fase siete TISubF7
+
 
                             HoraInicio = RegistroPie[0],
                             HoraFin = RegistroPie[1],
@@ -191,12 +197,14 @@ namespace test.Servicios.Parser
                             FtzMin = RegistroPie[6],
                             FtzMax = RegistroPie[7],
                             AperturaPuerta = RegistroPie[8],
-
+                            TiempoCiclo =  (TimeSpan.Parse(RegistroDatosFF[0].Replace(" ", String.Empty).Substring(21)) + TimeSpan.Parse(RegistroDatosFF[3].Replace(" ", String.Empty).Substring(21))+
+                            +TimeSpan.Parse(RegistroDatosFF[6].Replace(" ", String.Empty).Substring(21)) + TimeSpan.Parse(RegistroDatosFF[9].Replace(" ", String.Empty).Substring(21))).ToString() + " " + DateTime.Now.ToString("dd-MM-yyyy"),
 
 
                         }; RegistroFinal.Add(row); //añado elementos
                     }
-                    catch { }
+                    catch { Console.WriteLine("NO CUMPLE");
+                    }
 
 
                     var ciclos = new Ciclos();// Instancio objeto Ciclos
