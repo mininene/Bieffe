@@ -17,7 +17,7 @@ namespace test.Servicios.Parser
             try
             {
 
-                string path = @"C:\Users\fuenteI3\Desktop\ReportesGenerados\AutoClaveA.txt";
+                string path = @"C:\Users\fuenteI3\Desktop\ReportesGenerados\AutoClaveA1.txt";
                 string Programa = "PROGRAMA";
                 string Programador = "PROGRAMAD.";
                 string Operador = "OPERADOR";
@@ -33,9 +33,9 @@ namespace test.Servicios.Parser
                 string FaseCuatro = "FASE    4";
                 string FaseCinco = "+FASE    5 = CALENTAMIENTO CON P=P(T)";
                 string FaseSeis = "+FASE    6";
-                string FaseSiete = "+FASE    7 = ENFRIAMIENTO CON P CONSTANTE";
-                string FaseOcho = "+FASE    8 = ENFRIAM.REPETIDOS PAR AIRE  ";
-                string FaseNueve = "+FASE    9 = ENFRIAM.CON DESC.ESPONT.PRES.";
+                string FaseSiete = "+FASE    7";
+                string FaseOcho = "+FASE    8";
+                string FaseNueve = "+FASE    9";
                 string FaseDiez = "FASE   10";
                 string FaseOnce = "FASE   11";
                 string FaseDoce = "FASE   12";
@@ -67,8 +67,7 @@ namespace test.Servicios.Parser
                     var RegistroTF = new List<string>();
                     var RegistroTFSub = new List<string>();
                     var RegistroPie = new List<string>();
-
-                    var RegistroCiclo1 = new List<string>();
+                    var RegistroAlarma = new List<string>();
 
 
                     var texts = File.ReadAllLines(path, new UnicodeEncoding());
@@ -99,21 +98,26 @@ namespace test.Servicios.Parser
                     RegistroPie = texts.Where(lines => lines.Contains(HoraI) || (lines.Contains(HoraF)) || (lines.Contains(EsterN)
                    || (lines.Contains(TMin)) || (lines.Contains(Tmax)) || (lines.Contains(DFE)) || (lines.Contains(Fmin) || (lines.Contains(Fmax) || (lines.Contains(ok)))))).ToList();
 
-                    for (int i = 0; i < con.Length; i++)
-                    {
-                        if (con[i].Contains("+FASE    5") && i >= 0)
-                        {
-                            string g = con[i]+"\n" +  con[i+1]+"\n" + con[i+2];
-                            //string TFo = con[i - 5];
-                            //Console.WriteLine(g);
-                            // Console.WriteLine(fo);
-                            RegistroCiclo1.Add(g);
-                            //RegistroTFSub.Add(TFo);
-                        }
-                    }
 
 
-                   // RegistroCiclo1.ForEach(r => Console.WriteLine(r.ToArray()));
+                    RegistroAlarma = texts.Where(lines => lines.Contains("*")).ToList();
+
+
+                    //for (int i = 0; i < con.Length; i++)
+                    //{
+                    //    if (con[i].Contains("+FASE    5") && i >= 0)
+                    //    {
+                    //        string g = con[i]+"\n" +  con[i+1]+"\n" + con[i+2];
+                    //        //string TFo = con[i - 5];
+                    //        //Console.WriteLine(g);
+                    //        // Console.WriteLine(fo);
+                    //        RegistroCiclo1.Add(g);
+                    //        //RegistroTFSub.Add(TFo);
+                    //    }
+                    //}
+
+
+                  // RegistroTF.ForEach(r => Console.WriteLine(r.ToArray()));
 
 
                     List<Row> RegistroFinal = new List<Row>(); //declaro la lista que quiero cargar
@@ -148,14 +152,14 @@ namespace test.Servicios.Parser
 
                             TIF5 = RegistroCiclos[23],
                             TIF6 = RegistroCiclos[28],
-                         //   TIF7 = RegistroCiclos[33],
+                            //  TIF7 = RegistroCiclos[33],
                             TIF8 = RegistroCiclos[38],
                             TIF9 = RegistroCiclos[43],
                             TFF13 = RegistroCiclos[63],   //revisar
 
                             TISubF5 = RegistroCiclos[24],
                             TISubF6 = RegistroCiclos[29],
-                          //  TISubF7 = RegistroCiclos[34],
+                            //  TISubF7 = RegistroCiclos[34],
                             TISubF8 = RegistroCiclos[39],
                             TISubF9 = RegistroCiclos[44],
                             TFSubF13 = RegistroCiclos[64],
@@ -174,18 +178,17 @@ namespace test.Servicios.Parser
                             DuracionTotalF12 = RegistroDatosFF[33],
 
 
-                            TFF5 = RegistroTF[0],
+                            TFF5 = RegistroTF[1],
                             TFF6 = RegistroCiclos[33],//Es el inicio de fase 7 TIF7
-                            TIF7 = RegistroTF[2],  // TIF7 realmente es TFF7
-                           // TFF6 = RegistroTF[1],  
-                            TFF8 = RegistroDatosFF[26],
+                            TIF7 = RegistroTF[3],  // TIF7 realmente es TFF7
+                            //TFF8 = RegistroDatosFF[26],
+                            TFF8= RegistroCiclos[38], //TFF8 = TIF8
                             TFF9 = RegistroDatosFF[29],
 
 
-                            TFSubF5 = RegistroTFSub[0],
-                            TISubF7= RegistroTFSub[2], // TISubF7 es TFSubF7
-                           // TFSubF6 = RegistroTFSub[1], 
-                           TFSubF6= RegistroCiclos[34],  //Inicio Sbzero de la Fase siete TISubF7
+                            TFSubF5 = RegistroTFSub[1],
+                            TISubF7 = RegistroTFSub[3], // TISubF7 es TFSubF7
+                            TFSubF6 = RegistroCiclos[34],  //Inicio Sbzero de la Fase siete TISubF7
 
 
                             HoraInicio = RegistroPie[0],
@@ -199,11 +202,11 @@ namespace test.Servicios.Parser
                             AperturaPuerta = RegistroPie[8],
                             TiempoCiclo =  (TimeSpan.Parse(RegistroDatosFF[0].Replace(" ", String.Empty).Substring(21)) + TimeSpan.Parse(RegistroDatosFF[3].Replace(" ", String.Empty).Substring(21))+
                             +TimeSpan.Parse(RegistroDatosFF[6].Replace(" ", String.Empty).Substring(21)) + TimeSpan.Parse(RegistroDatosFF[9].Replace(" ", String.Empty).Substring(21))).ToString() + " " + DateTime.Now.ToString("dd-MM-yyyy"),
-
+                           // TiempoCiclo = (TimeSpan.Parse(RegistroCiclos[63].Replace(" ", String.Empty).Substring(1,5))+ TimeSpan.Parse(RegistroDatosFF[3].Replace(" ", String.Empty).Substring(21)) ).ToString(),
 
                         }; RegistroFinal.Add(row); //añado elementos
                     }
-                    catch { Console.WriteLine("NO CUMPLE");
+                    catch { Console.WriteLine("Los campos No cumplen con el modelo");
                     }
 
 
