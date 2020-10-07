@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,107 +18,116 @@ namespace test
 
         static void Main(string[] args)
         {
-            //////Wrapper.ConnectionWrapper con = new Wrapper.ConnectionWrapper();
+            ////////Wrapper.ConnectionWrapper con = new Wrapper.ConnectionWrapper();
 
-            //////var ListaDatos = new List<ConnectionData>
-            ////// {
-            //////    new ConnectionData { Version=4401, Ip="10.109.80.81", Remote="NF8387A02443.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveA.txt" },
-            //////     new ConnectionData { Version=4002, Ip="10.109.80.90", Remote="0827J07176.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveJ.txt" },
-            //////     new ConnectionData { Version=4002, Ip="10.109.80.91", Remote="0828K10597.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveK.txt" },
-            //////     new ConnectionData { Version=4001, Ip="10.109.80.92", Remote="1167L20752.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveL.txt" },
-            //////     new ConnectionData { Version=37, Ip="10.109.80.83", Remote="8389C22567.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveC2.txt" },
-            ////// };
+            ////////var ListaDatos = new List<ConnectionData>
+            //////// {
+            ////////    //new ConnectionData { Version=4401, Ip="10.109.80.81", Remote="NF8387A02443.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\P8AutoClaveA_02443.txt" },
+            ////////    //new ConnectionData { Version=4002, Ip="10.109.80.89", Remote="NA0672EGI08871.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\P8AutoClaveI_08871.txt" },
+            ////////    //new ConnectionData { Version=4002, Ip="10.109.80.94", Remote="NA0658EGH13977.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\P8AutoClaveH_13977.txt" },
+            ////////    new ConnectionData { Version=4001, Ip="10.109.80.86", Remote="NF1030F16395.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\P8AutoClaveF_16395.txt" },
+            ////////    //new ConnectionData { Version=4002, Ip="10.109.80.93", Remote="NA0611EFM05014.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\P8AutoClaveM_05014.txt" },
+            ////////    new ConnectionData { Version=4002, Ip="10.109.80.87", Remote="NF1031G08838.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\P20AutoClaveG_05014.txt" },
 
-            //////foreach (var item in ListaDatos)
-            //////{
-            //////    System.Threading.Thread.Sleep(1000);
+            ////////    //new ConnectionData { Version=4002, Ip="10.109.80.90", Remote="0827J07176.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveJ.txt" },
+            ////////    //new ConnectionData { Version=4002, Ip="10.109.80.91", Remote="0828K10597.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveK.txt" },
+            ////////    //new ConnectionData { Version=4001, Ip="10.109.80.92", Remote="1167L20752.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveL.txt" },
+            ////////    //new ConnectionData { Version=37, Ip="10.109.80.83", Remote="8389C22567.LOG", Local="C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveC2.txt" },
 
-            //////    float version = con.get_version();
-            //////    Console.WriteLine(version);
+            //////// };
 
+            ////////foreach (var item in ListaDatos)
+            ////////{
+            ////////    System.Threading.Thread.Sleep(1000);
 
-            //////    uint handle = con.ConnectSession(item.Version, item.Ip);
-            //////    //uint handle = con.ConnectSession(4002, "10.109.80.90");
-            //////    // uint handle = con.ConnectSession(4002, "10.109.80.91");
-            //////    //uint handle = con.ConnectSession(4401, "10.109.80.92");
-            //////    //uint handle = con.ConnectSession(37, "10.109.80.83");
-
-            //////    Console.WriteLine("Valor de Sesion: " + handle);
-
-            //////    uint lhandle = con.ConnectApi(handle);
-            //////    Console.WriteLine("Valor de Conexion: " + lhandle);
-
-            //////    uint result = con.GetData(handle, item.Remote, item.Local);
-            //////    //uint result = con.GetData(handle, "0827J07105.LOG", "C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveJ.txt");
-            //////    // uint result = con.GetData(handle, "0828K10522.LOG", "C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveK.txt");
-            //////    //uint result = con.GetData(handle, "1167L20681.LOG", "C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveL.txt");
-            //////    //uint result = con.GetData(handle, "8389C22477.LOG", "C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveC.txt");
-
-            //////    Console.WriteLine("Resultado de getData: " + result);
-
-            //////    uint lasterror = con.GetError();
-            //////    Console.WriteLine("Valor Error: " + lasterror);
-
-            //////    Console.WriteLine("Cerrar Conexion valor: " + con.CloseConnection(ref handle));
-
-                ////StringBuilder abuffer= new StringBuilder(32);
-                ////string strout = abuffer.ToString();
-                ////Console.WriteLine(strout);
-                //////Console.WriteLine(buffer.Capacity.ToString());
-                //////Console.WriteLine("Mensaje de error string: " + s);
-                ////Console.WriteLine( con.GetMessage(lasterror,  abuffer));
-                ////Console.WriteLine("Mensaje de error: " + message.ToString());
-
-                //}
-                //using (var context = new HojaResumenDb())
-
-                //{
-                //    var stdQuery = (from d in context.Ciclos
-
-                //                    select new { Id = d.IdAutoclave, Programador = d.Programador });
-
-                //    foreach (var q in stdQuery)
-
-                //    {
-
-                //        Console.WriteLine("ID : " + q.Id + ", Nombre : " + q.Programador);
-
-                //    }
-                //}
+            ////////    float version = con.get_version();
+            ////////    Console.WriteLine(version);
 
 
-                //using (var context = new HojaResumenDb())
+            ////////    uint handle = con.ConnectSession(item.Version, item.Ip);
+            ////////    //uint handle = con.ConnectSession(4002, "10.109.80.90");
+            ////////    // uint handle = con.ConnectSession(4002, "10.109.80.91");
+            ////////    //uint handle = con.ConnectSession(4401, "10.109.80.92");
+            ////////    //uint handle = con.ConnectSession(37, "10.109.80.83");
 
-                //{
-                //    var query = from d in context.Ciclos.Where(x => x.Id == 63)
-                //                select d;
+            ////////    Console.WriteLine("Valor de Sesion: " + handle);
 
-                //    foreach (var q in query)
+            ////////    uint lhandle = con.ConnectApi(handle);
+            ////////    Console.WriteLine("Valor de Conexion: " + lhandle);
 
-                //    {
+            ////////    uint result = con.GetData(handle, item.Remote, item.Local);
+            ////////    //uint result = con.GetData(handle, "0827J07105.LOG", "C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveJ.txt");
+            ////////    // uint result = con.GetData(handle, "0828K10522.LOG", "C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveK.txt");
+            ////////    //uint result = con.GetData(handle, "1167L20681.LOG", "C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveL.txt");
+            ////////    //uint result = con.GetData(handle, "8389C22477.LOG", "C:\\Users\\fuenteI3\\Desktop\\ReportesGenerados\\AutoClaveC.txt");
 
-                //        Console.WriteLine("ID: " + q.IdAutoclave+ " " + "Programador: "+  q.Programador +" "  + "Operador: " + " " + q.Operador);
+            ////////    Console.WriteLine("Resultado de getData: " + result);
 
-                //    }
+            ////////    uint lasterror = con.GetError();
+            ////////    Console.WriteLine("Valor Error: " + lasterror);
 
-                //}
+            ////////    Console.WriteLine("Cerrar Conexion valor: " + con.CloseConnection(ref handle));
+
+            ////StringBuilder abuffer= new StringBuilder(32);
+            ////string strout = abuffer.ToString();
+            ////Console.WriteLine(strout);
+            //////Console.WriteLine(buffer.Capacity.ToString());
+            //////Console.WriteLine("Mensaje de error string: " + s);
+            ////Console.WriteLine( con.GetMessage(lasterror,  abuffer));
+            ////Console.WriteLine("Mensaje de error: " + message.ToString());
+
+            //}
+            //using (var context = new HojaResumenDb())
+
+            //{
+            //    var stdQuery = (from d in context.Ciclos
+
+            //                    select new { Id = d.IdAutoclave, Programador = d.Programador });
+
+            //    foreach (var q in stdQuery)
+
+            //    {
+
+            //        Console.WriteLine("ID : " + q.Id + ", Nombre : " + q.Programador);
+
+            //    }
+            //}
+
+
+            //using (var context = new HojaResumenDb())
+
+            //{
+            //    var query = from d in context.Ciclos.Where(x => x.Id == 63)
+            //                select d;
+
+            //    foreach (var q in query)
+
+            //    {
+
+            //        Console.WriteLine("ID: " + q.IdAutoclave+ " " + "Programador: "+  q.Programador +" "  + "Operador: " + " " + q.Operador);
+
+            //    }
+
+            //}
 
 
 
 
 
 
-                //IRead lectura = new Read();
-                //lectura.readFile();
-                //IWriterDb writer = new WriterDb();
-                // writer.WriteFile();
-                //IWriterBd getWriter = new Writer();
-                //getWriter.Writer();
+            //IRead lectura = new Read();
+            //lectura.readFile();
+            //IWriterDb writer = new WriterDb();
+            // writer.WriteFile();
+            //IWriterBd getWriter = new Writer();
+            //getWriter.Writer();
 
             IParser GetData = new Parser();
             GetData.ParserFile();
 
             Console.WriteLine("Escribiendo en la base de datos");
+            
+         
 
 
             //            List<string> nuevosRegistros = new List<string>();
@@ -309,7 +319,7 @@ namespace test
 
 
 
-            ////}
+            //////}
 
 
             Console.ReadKey();

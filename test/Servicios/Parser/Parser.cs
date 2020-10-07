@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace test.Servicios.Parser
             try
             {
 
-                string path = @"C:\Users\fuenteI3\Desktop\ReportesGenerados\AutoClaveA1.txt";
+                string path = @"C:\Users\fuenteI3\Desktop\RegistrosAutoclaves\AutoClaveFP8504.txt";
                 string Programa = "PROGRAMA";
                 string Programador = "PROGRAMAD.";
                 string Operador = "OPERADOR";
@@ -31,14 +32,14 @@ namespace test.Servicios.Parser
                 string FaseDos = "FASE    2";
                 string FaseTres = "FASE    3";
                 string FaseCuatro = "FASE    4";
-                string FaseCinco = "+FASE    5 = CALENTAMIENTO CON P=P(T)";
+                string FaseCinco = "+FASE    5";
                 string FaseSeis = "+FASE    6";
                 string FaseSiete = "+FASE    7";
                 string FaseOcho = "+FASE    8";
                 string FaseNueve = "+FASE    9";
-                string FaseDiez = "FASE   10";
-                string FaseOnce = "FASE   11";
-                string FaseDoce = "FASE   12";
+                string FaseDiez = "+FASE   10";
+                string FaseOnce = "+FASE   11";
+                string FaseDoce = "+FASE   12";
                 string FaseTrece = "+FASE    13";
                 string DuracionFases = "$DURAC.TOTAL FASE";
                 string TiempoFases = "+";
@@ -76,9 +77,9 @@ namespace test.Servicios.Parser
                     || (lines.Contains(Operador)) || (lines.Contains(CodigoP)) || (lines.Contains(Lote)) || (lines.Contains(Modelo) || (lines.Contains(ProgresivoN))))).ToList();
 
 
-                    RegistroCiclos = texts.Where(lines => lines.Contains("+")).ToList();
+                    RegistroCiclos = texts.Where(lines => lines.StartsWith("+")).ToList();
 
-                    RegistroDatosFF = texts.Where(lines => lines.Contains("$")).ToList();
+                    RegistroDatosFF = texts.Where(lines => lines.StartsWith("$")).ToList();
 
 
                     for (int i = 0; i < con.Length; i++)
@@ -100,7 +101,7 @@ namespace test.Servicios.Parser
 
 
 
-                    RegistroAlarma = texts.Where(lines => lines.Contains("*")).ToList();
+                    RegistroAlarma = texts.Where(lines => lines.StartsWith("*")).ToList();
 
 
                     //for (int i = 0; i < con.Length; i++)
@@ -117,7 +118,7 @@ namespace test.Servicios.Parser
                     //}
 
 
-                  // RegistroTF.ForEach(r => Console.WriteLine(r.ToArray()));
+                 //RegistroTFSub.ForEach(r => Console.WriteLine(r.ToArray()));
 
 
                     List<Row> RegistroFinal = new List<Row>(); //declaro la lista que quiero cargar
@@ -126,7 +127,7 @@ namespace test.Servicios.Parser
                         Row row = new Row
                         {
                             IdAutoclave = RegistroEncabezado[5],
-                            IdSeccion = "Sabi1" + DateTime.Today,
+                            IdSeccion = RegistroPie[0].Replace(" ", String.Empty).Substring(25),
                             NumeroCiclo = RegistroEncabezado[7],
                             Programa = RegistroEncabezado[0],
                             DatosPrograma = RegistroEncabezado[6],  //modelo
@@ -200,9 +201,10 @@ namespace test.Servicios.Parser
                             FtzMin = RegistroPie[6],
                             FtzMax = RegistroPie[7],
                             AperturaPuerta = RegistroPie[8],
-                            TiempoCiclo =  (TimeSpan.Parse(RegistroDatosFF[0].Replace(" ", String.Empty).Substring(21)) + TimeSpan.Parse(RegistroDatosFF[3].Replace(" ", String.Empty).Substring(21))+
-                            +TimeSpan.Parse(RegistroDatosFF[6].Replace(" ", String.Empty).Substring(21)) + TimeSpan.Parse(RegistroDatosFF[9].Replace(" ", String.Empty).Substring(21))).ToString() + " " + DateTime.Now.ToString("dd-MM-yyyy"),
-                           // TiempoCiclo = (TimeSpan.Parse(RegistroCiclos[63].Replace(" ", String.Empty).Substring(1,5))+ TimeSpan.Parse(RegistroDatosFF[3].Replace(" ", String.Empty).Substring(21)) ).ToString(),
+                            TiempoCiclo =  "Prueba",
+                            //(TimeSpan.Parse(RegistroDatosFF[3].Replace(" ", String.Empty).Substring(21)) +TimeSpan.Parse(RegistroDatosFF[6].Replace(" ", String.Empty).Substring(21)) + TimeSpan.Parse(RegistroDatosFF[9].Replace(" ", String.Empty).Substring(21))).ToString() + " " + DateTime.Now.ToString("dd-MM-yyyy"),
+                          
+
 
                         }; RegistroFinal.Add(row); //añado elementos
                     }
@@ -300,6 +302,8 @@ namespace test.Servicios.Parser
                     }
                     context.Ciclos.Add(ciclos);
                     context.SaveChanges();
+
+                  
 
                 }
             }catch(DbEntityValidationException dbEx)
